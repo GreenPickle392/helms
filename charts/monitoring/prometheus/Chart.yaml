@@ -1,0 +1,7 @@
+apiVersion: v2
+name: prometheus
+version: 0.1.0
+dependencies:
+  - name: prometheus
+    version: 2.1.23       # Beispielversion, bitte mit helm search prüfen
+    repository: https://charts.bitnami.com/bitnami
