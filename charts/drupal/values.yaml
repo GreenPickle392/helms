@@ -1,0 +1,17 @@
+replicaCount: 1
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30080
+
+mariadb:
+  auth:
+    rootPassword: secret123
+    database: drupaldb
+    username: drupal
+    password: drupalpass
+
+persistence:
+  enabled: true
+  size: 1Gi
