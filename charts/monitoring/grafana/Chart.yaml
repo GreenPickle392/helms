@@ -1,0 +1,7 @@
+apiVersion: v2
+name: grafana
+version: 0.1.0
+dependencies:
+  - name: grafana
+    version: 12.1.7       # Beispielversion, bitte prüfen
+    repository: https://charts.bitnami.com/bitnami
