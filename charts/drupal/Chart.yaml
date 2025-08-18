@@ -3,5 +3,5 @@ name: drupal-deployment
 version: 0.1.0
 dependencies:
   - name: drupal
-    version: 15.2.0
+    version: 22.0.29
     repository: https://charts.bitnami.com/bitnami
