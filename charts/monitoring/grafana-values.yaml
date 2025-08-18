@@ -1,0 +1,6 @@
+service:
+  type: NodePort
+adminUser: admin
+adminPassword: admin
+persistence:
+  enabled: false
