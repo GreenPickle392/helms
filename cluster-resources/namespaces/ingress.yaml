@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: ingress
   labels:
-    app.kubernetes.io/part-of: monitoring
+    app.kubernetes.io/part-of: ingress
