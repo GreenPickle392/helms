@@ -9,6 +9,8 @@ spec:
     repoURL: "https://github.com/GreenPickle392/helms.git"
     path: "apps"   # Pfad, wo alle Sub-Apps liegen
     targetRevision: main
+    helm:
+      timeoutSeconds: 60  # etl erhöhen
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
