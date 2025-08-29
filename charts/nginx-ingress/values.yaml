@@ -1,14 +1,7 @@
 controller:
-  replicaCount: 1
   service:
     type: NodePort
     nodePorts:
-      http: 30080
-      https: 30443
-  admissionWebhooks:
-    enabled: true
-  metrics:
-    enabled: true
+      http: 30080   # NodePort für HTTP
+      https: 30443  # NodePort für HTTPS
 
-defaultBackend:
-  enabled: true
