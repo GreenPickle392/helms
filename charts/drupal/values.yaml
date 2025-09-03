@@ -1,9 +1,27 @@
-metrics:
-  enabled: true       # aktiviert /metrics Endpoint
-  serviceMonitor:
-    enabled: true     # nur relevant, wenn Prometheus Operator vorhanden ist
-    namespace: monitoring
-    interval: 15s
-    scrapeTimeout: 10s
-    labels:
-      release: prometheus
+drupal:
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 31080
+
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      namespace: monitoring
+      interval: 15s
+      additionalLabels: {}
+
+  mariadb:
+    enabled: true
+    rootUser:
+      password: drupal-root-password
+    db:
+      user: drupal
+      password: drupal-password
+      name: drupaldb
+
+  persistence:
+    enabled: true
+    storageClass: standard
+    size: 8Gi
