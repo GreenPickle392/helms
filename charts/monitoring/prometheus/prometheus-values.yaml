@@ -25,3 +25,7 @@ kube-prometheus-stack:
 
   prometheusOperator:
     createCustomResource: true
+ 
+  prometheus-node-exporter:
+  hostRootFsMount:
+    enabled: false
