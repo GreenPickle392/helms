@@ -1,7 +1,7 @@
 apiVersion: v2
-name: prometheus
+name: monitoring-stack
 version: 0.1.0
 dependencies:
-  - name: prometheus
-    version: 2.1.23       # Beispielversion, bitte mit helm search prüfen
-    repository: https://charts.bitnami.com/bitnami
+  - name: kube-prometheus-stack
+    version: "77.5.0"           # Beispielversion, anpassen oder aktuellste nehmen
+    repository: "https://prometheus-community.github.io/helm-charts"
