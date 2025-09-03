@@ -5,3 +5,6 @@ dependencies:
   - name: drupal
     version: 23.0.0
     repository: https://charts.bitnami.com/bitnami
+    import-values:
+      - child: extraContainers
+        parent: extraContainers
