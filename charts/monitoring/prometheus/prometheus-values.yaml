@@ -1,10 +1,27 @@
-server:
-  service:
-    type: NodePort
-  persistentVolume:
-    enabled: false
-  # === Drupal Scrape Config ===
-  extraConfigmapMounts:
-    - name: prometheus-scrape-config
-      mountPath: /etc/prometheus/prometheus.yml
-      subPath: prometheus.yml
+kube-prometheus-stack:
+  grafana:
+    enabled: true
+    adminUser: admin
+    adminPassword: grafana-password
+    service:
+      type: NodePort
+      nodePort: 32000
+
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: false
+
+  serviceMonitors:
+    - name: drupal
+      selector:
+        matchLabels:
+          app.kubernetes.io/name: drupal
+      endpoints:
+        - port: http
+          interval: 15s
+
+  alertmanager:
+    enabled: true
+
+  prometheusOperator:
+    createCustomResource: true
