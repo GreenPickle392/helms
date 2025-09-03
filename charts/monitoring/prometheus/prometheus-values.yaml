@@ -3,3 +3,8 @@ server:
     type: NodePort
   persistentVolume:
     enabled: false
+  # === Drupal Scrape Config ===
+  extraConfigmapMounts:
+    - name: prometheus-scrape-config
+      mountPath: /etc/prometheus/prometheus.yml
+      subPath: prometheus.yml
