@@ -1,36 +1,9 @@
-# Werte für das übergeordnete Chart "drupal-deployment"
-drupal:
-  replicaCount: 1
-
-  # Service Konfiguration
-  service:
-    type: NodePorts
-      http: 80
-      http: 30080
-
-  # MariaDB Einstellungen
-  mariadb:
-    auth:
-      rootPassword: secret123
-      database: drupaldb
-      username: drupal
-      password: drupalpass
-
-  # Persistenz für Drupal
-  persistence:
-    enabled: true
-    size: 1Gi
-
-  # Prometheus Metrics Sidecar
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-    service:
-      type: ClusterIP          # ClusterIP reicht für Prometheus-Scraping
-      ports:
-        metrics: 9117
-    podAnnotations:
-      prometheus.io/scrape: "true"
-      prometheus.io/port: "9117"
-
+metrics:
+  enabled: true       # aktiviert /metrics Endpoint
+  serviceMonitor:
+    enabled: true     # nur relevant, wenn Prometheus Operator vorhanden ist
+    namespace: monitoring
+    interval: 15s
+    scrapeTimeout: 10s
+    labels:
+      release: prometheus
