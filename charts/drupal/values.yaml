@@ -15,3 +15,18 @@ mariadb:
 persistence:
   enabled: true
   size: 1Gi
+
+# === Sidecar für Prometheus Monitoring ===
+extraContainers:
+  - name: drupal-exporter
+    image: prom/drupal-exporter:latest
+    ports:
+      - containerPort: 9110
+        name: metrics
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 64Mi
