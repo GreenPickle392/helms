@@ -1,29 +1,36 @@
-replicaCount: 1
+# Werte für das übergeordnete Chart "drupal-deployment"
+drupal:
+  replicaCount: 1
 
-service:
-  type: NodePort
-  ports:
-    http: 80
-  nodePorts:
-    http: 30080
-
-mariadb:
-  auth:
-    rootPassword: secret123
-    database: drupaldb
-    username: drupal
-    password: drupalpass
-
-persistence:
-  enabled: true
-  size: 1Gi
-
-metrics:
-  enabled: true
+  # Service Konfiguration
   service:
-    type: ClusterIP   # reicht für Prometheus-Scraping
+    type: NodePort
     ports:
-      metrics: 9117
-  podAnnotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "9117"
+      http: 80
+    nodePorts:
+      http: 30080
+
+  # MariaDB Einstellungen
+  mariadb:
+    auth:
+      rootPassword: secret123
+      database: drupaldb
+      username: drupal
+      password: drupalpass
+
+  # Persistenz für Drupal
+  persistence:
+    enabled: true
+    size: 1Gi
+
+  # Prometheus Metrics Sidecar
+  metrics:
+    enabled: true
+    service:
+      type: ClusterIP          # ClusterIP reicht für Prometheus-Scraping
+      ports:
+        metrics: 9117
+    podAnnotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "9117"
+
