@@ -2,8 +2,10 @@ replicaCount: 1
 
 service:
   type: NodePort
-  port: 80
-  nodePort: 30080
+  ports:
+    http: 80
+  nodePorts:
+    http: 30080
 
 mariadb:
   auth:
@@ -17,12 +19,12 @@ persistence:
   size: 1Gi
 
 # === Sidecar für Prometheus Monitoring ===
-extraContainers:
+sidecars:
   - name: drupal-exporter
     image: prom/drupal-exporter:latest
     ports:
-      - containerPort: 9110
-        name: metrics
+      - name: metrics
+        containerPort: 9110
     resources:
       limits:
         cpu: 100m
@@ -30,3 +32,12 @@ extraContainers:
       requests:
         cpu: 50m
         memory: 64Mi
+
+service:
+  type: NodePort
+  ports:
+    http: 80
+    metrics: 9110
+  nodePorts:
+    http: 30080
+    metrics: 30911   # z. B. für deinen Exporter
