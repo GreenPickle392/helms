@@ -3,7 +3,6 @@ drupal:
     type: NodePort
     port: 80
     nodePort: 31080
-
   metrics:
     enabled: true
     serviceMonitor:
@@ -11,17 +10,14 @@ drupal:
       namespace: monitoring
       interval: 15s
       additionalLabels: {}
-
   mariadb:
     enabled: true
-    rootUser:
-      password: drupal-root-password
-    db:
-      user: drupal
+    auth:
+      rootPassword: drupal-root-password #das war vorher anders formuliert, das chart erwartet ein spezifisches Format
+      username: drupal
       password: drupal-password
-      name: drupaldb
-
+      database: drupaldb
   persistence:
     enabled: true
-    storageClass: local-path #geändert, da der Pod Probleme beim deployment hatte
+    storageClass: local-path
     size: 8Gi
