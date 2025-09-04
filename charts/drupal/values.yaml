@@ -23,5 +23,5 @@ drupal:
 
   persistence:
     enabled: true
-    storageClass: standard
+    storageClass: local-path #geändert, da der Pod Probleme beim deployment hatte
     size: 8Gi
